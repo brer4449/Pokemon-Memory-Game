@@ -10,8 +10,9 @@ class App extends Component {
     pokemonList: pokemon,
   };
 
+  //Fisher-Yates (aka Knuth) Shuffle
   shuffle = (array) => {
-    var currentIndex = array.length,
+    let currentIndex = array.length,
       temporaryValue,
       randomIndex;
 
@@ -30,11 +31,6 @@ class App extends Component {
     return array;
   };
 
-  // Used like so
-  // var arr = [2, 11, 37, 42, 55, 13, 29, 30];
-  // shuffle(arr);
-  // console.log(arr);
-
   clickHandler = (event) => {
     console.log(event.target.selected);
     if (event.target.selected) {
@@ -48,7 +44,7 @@ class App extends Component {
       event.target.selected = true;
     }
     // re-arrange image cards here...?
-    // this.setState({ pokemonList: "rearranged array" });
+    this.setState({ pokemonList: this.shuffle(this.state.pokemonList) });
   };
 
   render() {
@@ -56,10 +52,10 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1>Choose a Pokemon!</h1>
-          <p>
-            But be sure to choose each Pokemon only once! If you select one that
-            you've already chosen: <strong>YOU LOSE!</strong>
-          </p>
+          <h3>
+            Be sure to choose each Pokemon only once! If you select one that
+            you've already chosen: YOU LOSE!
+          </h3>
           <h3 className="score">
             <strong>Score:</strong> {this.state.score}
           </h3>
