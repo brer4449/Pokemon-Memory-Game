@@ -5,6 +5,20 @@ import pokemon from "./pokemon.json";
 import "./App.css";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.childClickHandler = this.childClickHandler.bind(this);
+  }
+
+  childClickHandler() {
+    this.setState({
+      gameover: false,
+      score: 0,
+      pokemonList: pokemon,
+    });
+  }
+
   state = {
     gameover: false,
     score: 0,
@@ -37,14 +51,11 @@ class App extends Component {
     if (event.target.selected) {
       // if it's true we want to restart the game and display game over message
       this.setState({ gameover: true });
-      setTimeout(function () {
-        window.location.reload(false);
-      }, 1500);
     } else {
       this.setState({ score: this.state.score + 1 });
       event.target.selected = true;
     }
-    // re-arrange image cards here...?
+    // re-arrange image cards here
     this.setState({ pokemonList: this.shuffle(this.state.pokemonList) });
   };
 
@@ -61,6 +72,7 @@ class App extends Component {
             <EndGame
               gameover={this.state.gameover}
               score={this.state.score}
+              childClickHandler={this.childClickHandler}
             ></EndGame>
           ) : (
             ""
