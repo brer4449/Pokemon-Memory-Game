@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PokemonCard from "./Components/PokemonCard";
+import EndGame from "./Components/EndGame";
 import pokemon from "./pokemon.json";
 import "./App.css";
 
@@ -56,14 +57,17 @@ class App extends Component {
             Be sure to choose each Pokemon only once! If you select one that
             you've already chosen: YOU LOSE!
           </h3>
-          <h3 className="score">
-            <strong>Score:</strong> {this.state.score}
-          </h3>
-          {this.state.gameover ? (
-            <h1 className="gameover">GAME OVER! TRY AGAIN?</h1>
+          {this.state.gameover || this.state.score === 10 ? (
+            <EndGame
+              gameover={this.state.gameover}
+              score={this.state.score}
+            ></EndGame>
           ) : (
             ""
           )}
+          <h3 className="score">
+            <strong>Score:</strong> {this.state.score}
+          </h3>
           {this.state.pokemonList.map((pokeman) => {
             return (
               <PokemonCard
