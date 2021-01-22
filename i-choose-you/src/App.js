@@ -10,7 +10,7 @@ class App extends Component {
 
     this.childClickHandler = this.childClickHandler.bind(this);
   }
-
+  /***************** NEED TO REFRESH STATE WHEN TRY AGAIN BUTTON CLICKED*****************/
   childClickHandler() {
     this.setState({
       gameover: false,
