@@ -77,9 +77,9 @@ class App extends Component {
           ) : (
             ""
           )}
-          <h3 className="score">
+          <h2 className="score">
             <strong>Score:</strong> {this.state.score}
-          </h3>
+          </h2>
           {this.state.pokemonList.map((pokeman) => {
             return (
               <PokemonCard
