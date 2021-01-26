@@ -33,7 +33,24 @@ html {
   overflow: hidden;
   text-align: center;
   display: inline-block;
-  /* box-shadow: 0 2px 4px #999, 0 2px 4px #999; */
-  border-radius: 2px;
+  border-radius: 10px;
   margin: 1rem;
+}
+
+.resetButton {
+  display: block;
+  background-color: #6890f0;
+  margin: 0 auto;
+  margin-top: 20px;
+  border-radius: 5px;
+  width: 40%;
+}
+
+.gameoverCard {
+  position: absolute;
+  min-height: 50vh;
+  background-color: white;
+  margin-left: 40%;
+  width: 20%;
+  border-radius: 20px;
 }

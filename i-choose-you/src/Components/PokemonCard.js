@@ -10,7 +10,6 @@ const pokemonCard = (props) => {
         id={props.id}
         selected={props.selected}
         onClick={props.clicked}
-        style={{ borderRadius: "10px" }}
       ></img>
     </>
   );
