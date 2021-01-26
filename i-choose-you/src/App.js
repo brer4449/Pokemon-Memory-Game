@@ -16,6 +16,7 @@ class App extends Component {
       gameover: false,
       score: 0,
       pokemonList: pokemon,
+      selected: false,
     });
   }
 
@@ -23,6 +24,7 @@ class App extends Component {
     gameover: false,
     score: 0,
     pokemonList: pokemon,
+    selected: false,
   };
 
   //Fisher-Yates (aka Knuth) Shuffle
@@ -50,6 +52,7 @@ class App extends Component {
     console.log(event.target.selected);
     if (event.target.selected) {
       // if it's true we want to restart the game and display game over message
+      event.target.selected = false;
       this.setState({ gameover: true });
     } else {
       this.setState({ score: this.state.score + 1 });
@@ -80,6 +83,31 @@ class App extends Component {
           <h2 className="score">
             <strong>Score:</strong> {this.state.score}
           </h2>
+          {this.state.gameover || this.state.score === 10
+            ? this.state.pokemonList.map((pokeman) => {
+                return (
+                  <PokemonCard
+                    name={pokeman.name}
+                    image={pokeman.image}
+                    id={pokeman.id}
+                    key={pokeman.id}
+                    selected={false}
+                    clicked={this.clickHandler}
+                  ></PokemonCard>
+                );
+              })
+            : this.state.pokemonList.map((pokeman) => {
+                return (
+                  <PokemonCard
+                    name={pokeman.name}
+                    image={pokeman.image}
+                    id={pokeman.id}
+                    key={pokeman.id}
+                    selected={pokeman.alreadyClicked}
+                    clicked={this.clickHandler}
+                  ></PokemonCard>
+                );
+              })}
           {this.state.pokemonList.map((pokeman) => {
             return (
               <PokemonCard
@@ -87,8 +115,8 @@ class App extends Component {
                 image={pokeman.image}
                 id={pokeman.id}
                 key={pokeman.id}
+                selected={false}
                 clicked={this.clickHandler}
-                selected={pokeman.alreadyClicked}
               ></PokemonCard>
             );
           })}
